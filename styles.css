@@ -1,0 +1,107 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* FONDO GENERAL */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #46334F, #8082A6);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* CONTENEDOR PRINCIPAL */
+main {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 350px;
+    backdrop-filter: blur(10px);
+}
+
+/* TÍTULO */
+h1 {
+    margin-bottom: 20px;
+    color: #F2C230;
+}
+
+/* INPUT */
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+/* BOTONES */
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* BOTÓN BUSCAR */
+#btnBuscar {
+    background-color: #F2921D;
+    color: white;
+}
+
+#btnBuscar:hover {
+    background-color: #F24F13;
+}
+
+/* BOTÓN GUARDAR */
+#btnGuardar {
+    background-color: #F2C230;
+    color: black;
+}
+
+#btnGuardar:hover {
+    background-color: #F2921D;
+}
+
+/* RESULTADO */
+#resultadoPokemon {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 15px;
+}
+
+/* IMAGEN */
+#imagenPokemon {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+/* NOMBRE */
+#nombre {
+    color: #F2C230;
+}
+
+/* FAVORITOS */
+#favoritos {
+    margin-top: 20px;
+}
+
+/* TARJETAS DE FAVORITOS */
+#favoritos div {
+    background-color: #8082A6;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
