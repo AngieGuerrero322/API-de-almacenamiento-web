@@ -28,6 +28,7 @@ function searchPokemon() {
     .catch(function (error) {
       alert("¡Error! Pokémon no encontrado");
     });
+    
 }
 
 buscarPokemon.addEventListener("click", searchPokemon)
