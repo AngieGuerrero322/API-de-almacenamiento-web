@@ -31,22 +31,17 @@ function searchPokemon() {
     });
 }
 
-buscarPokemon.addEventListener("click", function (){
-    resultado.style.display ="block";
+buscarPokemon.addEventListener("click", function () {
+  resultado.style.display = "block";
+  searchPokemon();
 });
 
-function mostrarFavoritos() {
-  const contenedor = document.getElementById("favoritos");
-  container.innerHTML = "";
-  const favoritos = obtenerFavorites();
-  favoritos.forEach(pokemon => {
-    const div = document.createElement("div");
-    div.innerHTML = `
-      <p>${pokemon.name}</p>
-      <img src="${pokemon.image}" width="80">
-    `;
-    contenedor.appendChild(div);
-  });
+
+function obtenerFavorites() {
+  return JSON.parse(localStorage.getItem("favoritos")) || [];
+}
+function setearFavoritos(favoritos) {
+  localStorage.setItem("favoritos", JSON.stringify(favoritos));
 }
 
 function saveFavorite() {
@@ -55,27 +50,28 @@ function saveFavorite() {
     return;
   }
   const favoritos = obtenerFavorites();
-  const existe = favoritos.some((p) => p.name === pokemonActual.name);
+  const existe = favoritos.some((p) => p.name === pokemonGlobal.name);
   if (existe) {
     alert("Ya esta en favoritos");
     return;
   }
   console.log("click en favorito", pokemonGlobal);
-  
+
   favoritos.push(pokemonGlobal);
   setearFavoritos(favoritos);
+
   updateFavoritesList();
 
-  function obtenerFavorites() {
-    return JSON.parse(localStorage.getItem("favoritos")) || [];
-  }
-  function setearFavoritos(favoritos) {
-    localStorage.setItem("favoritos", JSON.stringify(favoritos));
-  }
+  console.log("click en favorito22", favoritos);
+
+  obtenerFavorites();
+  setearFavoritos(favoritos);
+  updateFavoritesList();
 }
 
-btnGuardar.addEventListener("click", saveFavorite)
+btnGuardar.addEventListener("click", saveFavorite);
 
+  console.log("click en favorito22", favoritos);
 /* Función 3: Mostrar favoritos */
 function updateFavoritesList() {
   let guardados = localStorage.getItem("favoritos");
@@ -87,12 +83,9 @@ function updateFavoritesList() {
     let tarjeta = document.createElement("div");
     tarjeta.className = "tarjeta";
     tarjeta.innerHTML =
-      "<img src='" + pokemon.imagen + "'>" + "<p>" + pokemon.nombre + "</p>";
+      "<img src='" + pokemon.sprites.front_default + "'>" + "<p>" + pokemon.name + "</p>";
     document.getElementById("favoritos").appendChild(tarjeta);
   });
 }
-
-document.getElementById("btnBuscar").addEventListener("click", searchPokemon);
-document.getElementById("btnGuardar").addEventListener("click", saveFavorite);
 
 updateFavoritesList();
