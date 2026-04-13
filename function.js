@@ -1,31 +1,33 @@
-let nombre = document.getElementById("nombrePokemon").value;
+let buscarPokemon = document.getElementById("btnBuscar");
 let nombrePokemon = document.getElementById("nombre");
 let imagenPokemon = document.getElementById("imagenPokemon");
-const pokemonActual = null;
-const url = " https://pokeapi.co/api/v2/pokemon";
-
+let pokemonGlobal = null;
+const url = " https://pokeapi.co/api/v2/pokemon/";
 
 /* Funcion Buscar pokemón*/
 function searchPokemon() {
+  const nombre = document.getElementById("nombrePokemon").value.trim();
+
+     
   fetch(url + nombre)
     .then(function (response) {
-        if (response) {
-             return response.json();
-        }
-        else {
-            alert("Pokémon no encontrado")
-        }
+      if (response.ok) {
+        return response.json();
+      } else {
+        alert("Pokémon no encontrado");
+        return;
+      }
     })
     .then(function (data) {
       // Datos del Pokémon aquí
-      nombrePokemon.textContent =  data.name;
-      imagenPokemon.textContent =  data.sprites.front_default;
-
-      console.log(data);
+      nombrePokemon.textContent = data.name;
+      imagenPokemon.src = data.sprites.front_default;
+      pokemonGlobal = data;
+      console.log(pokemonGlobal);
     })
     .catch(function (error) {
       alert("¡Error! Pokémon no encontrado");
     });
 }
 
-searchPokemon();
+buscarPokemon.addEventListener("click", searchPokemon)
